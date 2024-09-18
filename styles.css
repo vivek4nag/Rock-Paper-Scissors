@@ -15,12 +15,20 @@ body{
 header{
     background: white;
     padding: 20px;
+    user-select: none;
 
     h1{
         color: black;
         text-align: center;
         
     }
+}
+
+.game-rule >h3{
+    text-align: center;
+    color: white;
+    user-select: none;
+    padding-top: 1%;
 }
 
 
@@ -60,11 +68,13 @@ header{
 .result{
     font-size: 1.8rem;
     color: white;
+    user-select: none;
 
     p{
         font-size: 1.8rem;
         text-align: center;
         font-weight: 700;
+        display: none;
     }
 }
 
@@ -106,6 +116,7 @@ header{
     color: white;
     font-size: 2rem;
     font-weight: bold;
+    user-select: none;
 }
 
 .green-glow{

@@ -27,11 +27,35 @@ function convertToWord(letter){
     if( letter === "s") return "Scissor";
 }
 
+//function to reset game
+function resetGame(){
+    userScore = 0
+    computerScore = 0
+    // result_p.innerHTML = "Game reset. Start again!";
+    result_p.style.display = "none"
+    userScore_span.innerHTML = userScore
+    computerScore_span.innerHTML = computerScore
+}
+
+// function to check who won
+function winnerCheck(){
+    if(userScore === 11){
+        // result_p.innerHTML = `Congrats !! You won the game 🎉`
+        alert("Congrats !! You won the game 🎉")
+        resetGame();
+    } else if( computerScore === 11){
+        // result_p.innerHTML = `Computer Won !! Better Luck Next Time`
+        alert("Computer Won !! Better Luck Next Time")
+        resetGame();
+    }
+}
+
 // function to output Win
 function win(userChoice, computerChoice){
     userScore++;
     userScore_span.innerHTML = userScore
     computerScore_span.innerHTML = computerScore
+    result_p.style.display = "block"
     result_p.innerHTML = `${convertToWord(userChoice)} beats ${convertToWord(computerChoice)}. You Win 🔥🔥`
 
     document.getElementById(userChoice).classList.add('green-glow')
@@ -43,6 +67,9 @@ function win(userChoice, computerChoice){
     setTimeout(() => {
         document.getElementById(computerChoice).classList.remove('red-glow')
     }, 500);
+
+    setTimeout(() => winnerCheck(), 2500);
+    
     
 }
 
@@ -50,6 +77,7 @@ function win(userChoice, computerChoice){
 function lose(userChoice, computerChoice){
     computerScore++
     computerScore_span.innerHTML = computerScore
+    result_p.style.display = "block"
     result_p.innerHTML = `${convertToWord(userChoice)} loses to ${convertToWord(computerChoice)}. You Lost 💩💩`
 
     document.getElementById(computerChoice).classList.add('green-glow')
@@ -61,11 +89,14 @@ function lose(userChoice, computerChoice){
     setTimeout(() => {
         document.getElementById(userChoice).classList.remove('red-glow')
     }, 500);
+
+    setTimeout(() => winnerCheck(), 2500);
     
 }
 
 // function to output draw
 function draw(userChoice, computerChoice){
+    result_p.style.display = "block"
     result_p.innerHTML = `${convertToWord(userChoice)} equals ${convertToWord(computerChoice)}. Game Tied ` 
 
     document.getElementById(userChoice).classList.add('grey-glow')
@@ -102,8 +133,6 @@ function game(userChoice){
             break;
 
     }
-    
-    
 }
 
 function main() {
